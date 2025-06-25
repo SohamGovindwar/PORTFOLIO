@@ -1,30 +1,66 @@
-# Portfolio design
+<h1 align="center">👋 Hi, I'm Soham Govindwar</h1>
+<h3 align="center">Full Stack Web Developer | React.js | Node.js | Firebase | DevOps</h3>
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+---
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/sohamwebteams-projects/v0-portfolio-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/ywCvZ2r7y8s)
+## 🚀 About Me
 
-## Overview
+I am a results-driven Full Stack Developer currently pursuing a **B.Tech in Computer Science and Engineering** at **MGM College of Engineering, Nanded** (2021–2025).  
+With hands-on experience in building scalable, modern web applications, I specialize in **React.js**, **Node.js**, **Firebase**, and **cloud-based deployment pipelines**. I bring a strong focus on clean code, performance optimization, and secure API integration.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+---
 
-## Deployment
+## 🛠️ Core Skills
 
-Your project is live at:
+### 💻 Frontend
+- React.js, Next.js, Redux, Tailwind CSS, Bootstrap, HTML5, CSS3
 
-**[https://vercel.com/sohamwebteams-projects/v0-portfolio-design](https://vercel.com/sohamwebteams-projects/v0-portfolio-design)**
+### ⚙️ Backend & APIs
+- Node.js, Express.js, Flask, RESTful APIs, JWT, Axios, React Query, Bcrypt, Nodemailer, Multer
 
-## Build your app
+### ☁️ Cloud & DevOps
+- Firebase (Auth, Firestore, Storage), GitHub Actions, Vercel, Netlify, Git, GitHub, Postman
 
-Continue building your app on:
+### 🗄️ Databases
+- Firestore, MongoDB, MySQL, Supabase
 
-**[https://v0.dev/chat/projects/ywCvZ2r7y8s](https://v0.dev/chat/projects/ywCvZ2r7y8s)**
+### 🔐 Security
+- JWT, OAuth2, Helmet.js, CORS, Secure REST API Practices
 
-## How It Works
+---
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## 🧠 Projects
+
+### 📌 [Internskool – Internship Management Platform](https://www.internskool.com/)
+- Role: Full Stack Developer  
+- Built a complete internship learning platform with student dashboards, course tracking, admin control, and Firebase integration.
+
+### 📌 CMS Website – Blog Publishing Platform
+- A full-featured CMS with admin dashboard, rich-text editing, and dynamic blog rendering using React, Firebase, and Firestore.
+
+### 📌 Web-Based Weather Forecasting System
+- Built with Flask and OpenWeatherMap API; real-time weather updates with chart-based trends and responsive UI.
+
+---
+
+## 🎓 Certifications
+
+- **Career Essentials in Generative AI** – Microsoft & LinkedIn Learning  
+- **Cybersecurity and Applied Ethical Hacking** – Infosys Springboard  
+- **Android App Development** – IIT Hyderabad  
+- **Python for Data Science** – Infosys Springboard  
+- **AWS APAC Solutions Architecture** – Forage  
+- **Walmart Advanced Software Engineering** – Forage  
+- **Accenture Nordics Software Engineering** – Forage  
+
+---
+
+## 📫 Contact Me
+
+- 📧 Email: [govindwarsoham@gmail.com](mailto:govindwarsoham@gmail.com)  
+- 🔗 LinkedIn: [linkedin.com/in/soham-govindwar-4a96bb258](https://linkedin.com/in/soham-govindwar-4a96bb258)  
+- 💻 GitHub: [github.com/SohamGovindwar](https://github.com/SohamGovindwar)
+
+---
+
+> ⚡ *“Building software that solves problems and scales ideas.”*
