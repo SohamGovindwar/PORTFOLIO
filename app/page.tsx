@@ -21,7 +21,72 @@ import {
   Zap,
   Rocket,
   Globe,
+  FileText,
+  Download,
 } from "lucide-react"
+
+// Color mapping function to ensure Tailwind classes are compiled
+const getColorClasses = (color: string) => {
+  const colorMap = {
+    purple: {
+      text: "text-purple-400",
+      bg: "bg-purple-400",
+      border: "border-purple-400",
+      bgOpacity: "bg-purple-500/20",
+      textHover: "text-purple-300",
+      bgHover: "bg-purple-500",
+    },
+    teal: {
+      text: "text-teal-400",
+      bg: "bg-teal-400",
+      border: "border-teal-400",
+      bgOpacity: "bg-teal-500/20",
+      textHover: "text-teal-300",
+      bgHover: "bg-teal-500",
+    },
+    blue: {
+      text: "text-blue-400",
+      bg: "bg-blue-400",
+      border: "border-blue-400",
+      bgOpacity: "bg-blue-500/20",
+      textHover: "text-blue-300",
+      bgHover: "bg-blue-500",
+    },
+    yellow: {
+      text: "text-yellow-400",
+      bg: "bg-yellow-400",
+      border: "border-yellow-400",
+      bgOpacity: "bg-yellow-500/20",
+      textHover: "text-yellow-300",
+      bgHover: "bg-yellow-500",
+    },
+    sky: {
+      text: "text-sky-400",
+      bg: "bg-sky-400",
+      border: "border-sky-400",
+      bgOpacity: "bg-sky-500/20",
+      textHover: "text-sky-300",
+      bgHover: "bg-sky-500",
+    },
+    amber: {
+      text: "text-amber-400",
+      bg: "bg-amber-400",
+      border: "border-amber-400",
+      bgOpacity: "bg-amber-500/20",
+      textHover: "text-amber-300",
+      bgHover: "bg-amber-500",
+    },
+    rose: {
+      text: "text-rose-400",
+      bg: "bg-rose-400",
+      border: "border-rose-400",
+      bgOpacity: "bg-rose-500/20",
+      textHover: "text-rose-300",
+      bgHover: "bg-rose-500",
+    },
+  }
+  return colorMap[color as keyof typeof colorMap] || colorMap.purple
+}
 
 // Custom hook for scroll progress
 const useScrollProgress = () => {
@@ -103,6 +168,12 @@ export default function Portfolio() {
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  
+  const handleViewResume = () => {
+    const resumeUrl = "https://drive.google.com/file/d/14TPhP28HooA1Q8OQz1gFEl2Uy1in2rcH/view?usp=sharing"
+    window.open(resumeUrl, "_blank", "noopener,noreferrer")
   }
 
   return (
@@ -334,9 +405,24 @@ export default function Portfolio() {
                   size="lg"
                   variant="outline"
                   className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black px-8 py-3 relative overflow-hidden group"
-                  onClick={() => scrollToSection("contact")}
+                  onClick={handleViewResume}
                 >
                   <motion.div className="absolute inset-0 bg-purple-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <span className="relative z-10 flex items-center">
+                    <FileText className="mr-2 h-5 w-5" />
+                    View Resume
+                  </span>
+                </Button>
+              </motion.div>
+
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-black px-8 py-3 relative overflow-hidden group"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  <motion.div className="absolute inset-0 bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                   <span className="relative z-10 flex items-center">
                     <Mail className="mr-2 h-5 w-5" />
                     Get In Touch
@@ -395,7 +481,7 @@ export default function Portfolio() {
                         viewport={{ once: true }}
                       >
                         <p className="text-lg text-gray-300 mb-6 leading-relaxed text-justify max-w-[95%] md:max-w-[90%]">
-                          "I’m a passionate Full Stack Developer with hands-on experience in building dynamic, 
+                          "I'm a passionate Full Stack Developer with hands-on experience in building dynamic, 
                           responsive web applications using modern technologies like React, Node.js, Firebase, 
                           and Tailwind CSS. Currently pursuing a B.Tech in Computer Science and Engineering at MGM College of Engineering, 
                           Nanded, I enjoy solving real-world problems through clean, scalable code and continuously strive to learn and grow 
@@ -510,8 +596,6 @@ export default function Portfolio() {
                   "Contributed to platforms serving 500+ users",
                   "Completed 4+ professional certifications",
                   "Participated in national-level development workshops",
-                  
-                   
                 ],
               },
             ].map((item, index) => (
@@ -525,9 +609,7 @@ export default function Portfolio() {
               >
                 <Card className="bg-white/5 border-white/10 backdrop-blur-md h-full hover:bg-white/10 transition-all duration-500 group">
                   <CardHeader>
-                    <CardTitle
-                      className={`text-xl text-${item.color}-400 flex items-center gap-2 group-hover:scale-110 transition-transform`}
-                    >
+                    <CardTitle className={`text-xl ${getColorClasses(item.color).text} flex items-center gap-2 group-hover:scale-110 transition-transform`}>
                       <motion.div whileHover={{ rotate: 360 }} transition={{ duration: 0.5 }}>
                         <item.icon className="h-6 w-6" />
                       </motion.div>
@@ -540,35 +622,33 @@ export default function Portfolio() {
                     ) : (
                       <ul className="text-gray-300 space-y-2">
                         {item.achievements?.map((achievement, i) => (
-                        <motion.li
-  key={i}
-  className="flex items-start gap-3 py-2"
-  initial={{ opacity: 0, x: -20 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-  viewport={{ once: true }}
->
-  <Star className={`h-5 w-5 mt-1 text-${item.color}-400 flex-shrink-0`} />
-  <span className="text-gray-300 leading-relaxed">
-    {achievement.includes("5+") ? (
-      <>
-        Successfully deployed <AnimatedCounter value={5} />+ web applications
-      </>
-    ) : achievement.includes("500+") ? (
-      <>
-        Contributed to platforms serving <AnimatedCounter value={500} />+ users
-      </>
-    ) : achievement.includes("4+") ? (
-      <>
-        Completed <AnimatedCounter value={4} />+ professional certifications
-      </>
-    ) : (
-      achievement
-    )}
-  </span>
-</motion.li>
-
-
+                          <motion.li
+                            key={i}
+                            className="flex items-start gap-3 py-2"
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+                            viewport={{ once: true }}
+                          >
+                            <Star className={`h-5 w-5 mt-1 ${getColorClasses(item.color).text} flex-shrink-0`} />
+                            <span className="text-gray-300 leading-relaxed">
+                              {achievement.includes("5+") ? (
+                                <>
+                                  Successfully deployed <AnimatedCounter value={5} />+ web applications
+                                </>
+                              ) : achievement.includes("500+") ? (
+                                <>
+                                  Contributed to platforms serving <AnimatedCounter value={500} />+ users
+                                </>
+                              ) : achievement.includes("4+") ? (
+                                <>
+                                  Completed <AnimatedCounter value={4} />+ professional certifications
+                                </>
+                              ) : (
+                                achievement
+                              )}
+                            </span>
+                          </motion.li>
                         ))}
                       </ul>
                     )}
@@ -580,13 +660,8 @@ export default function Portfolio() {
         </div>
       </motion.section>
 
-      {/* Continue with other sections... */}
-      {/* I'll continue with the rest of the sections in the same enhanced style */}
-
       {/* Skills Section with Animated Progress */}
-      
       <motion.section
-      
         id="skills"
         className="py-20 relative z-10"
         initial={{ opacity: 0 }}
@@ -610,36 +685,36 @@ export default function Portfolio() {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-               {
-    category: "Programming Languages",
-    skills: ["JavaScript", "Python", "SQL", "HTML5", "CSS3"],
-    color: "yellow",
-  },
-  {
-    category: "Frontend Development",
-    skills: ["React.js", "Next.js", "Redux", "Tailwind CSS", "Bootstrap", "Responsive Design"],
-    color: "purple",
-  },
-  {
-    category: "Backend Development",
-    skills: ["Node.js", "Express.js", "Flask", "RESTful API Design", "JWT Authentication"],
-    color: "sky",
-  },
-  {
-    category: "Cloud & DevOps",
-    skills: ["Firebase", "GitHub Actions", "CI/CD", "Netlify", "Vercel", "Git", "GitHub"],
-    color: "amber",
-  },
-  {
-    category: "Databases",
-    skills: ["Firestore", "MongoDB", "MySQL", "Supabase"],
-    color: "teal",
-  },
-  {
-    category: "Testing & Tools",
-    skills: ["Jest", "React Testing Library", "Postman", "Chrome DevTools", "Agile/Scrum"],
-    color: "rose",
-  },
+                {
+                  category: "Programming Languages",
+                  skills: ["JavaScript", "Python", "SQL", "HTML5", "CSS3"],
+                  color: "yellow",
+                },
+                {
+                  category: "Frontend Development",
+                  skills: ["React.js", "Next.js", "Redux", "Tailwind CSS", "Bootstrap", "Responsive Design"],
+                  color: "purple",
+                },
+                {
+                  category: "Backend Development",
+                  skills: ["Node.js", "Express.js", "Flask", "RESTful API Design", "JWT Authentication"],
+                  color: "sky",
+                },
+                {
+                  category: "Cloud & DevOps",
+                  skills: ["Firebase", "GitHub Actions", "CI/CD", "Netlify", "Vercel", "Git", "GitHub"],
+                  color: "amber",
+                },
+                {
+                  category: "Databases",
+                  skills: ["Firestore", "MongoDB", "MySQL", "Supabase"],
+                  color: "teal",
+                },
+                {
+                  category: "Testing & Tools",
+                  skills: ["Jest", "React Testing Library", "Postman", "Chrome DevTools", "Agile/Scrum"],
+                  color: "rose",
+                },
               ].map((skillGroup, index) => (
                 <motion.div
                   key={skillGroup.category}
@@ -651,10 +726,7 @@ export default function Portfolio() {
                 >
                   <Card className="bg-white/5 border-white/10 backdrop-blur-md h-full hover:bg-white/10 transition-all duration-500 group">
                     <CardHeader>
-                      <CardTitle
-                        className={`text-xl text-${skillGroup.color}-400 group-hover:scale-110 transition-transform flex items-center gap-2`}
-
-                      >
+                      <CardTitle className={`text-xl ${getColorClasses(skillGroup.color).text} group-hover:scale-110 transition-transform flex items-center gap-2`}>
                         <motion.div
                           animate={{ rotate: [0, 360] }}
                           transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
@@ -677,7 +749,7 @@ export default function Portfolio() {
                             whileHover={{ x: 10, scale: 1.05 }}
                           >
                             <motion.div
-                              className={`w-2 h-2 bg-${skillGroup.color}-400 rounded-full`}
+                              className={`w-2 h-2 ${getColorClasses(skillGroup.color).bg} rounded-full`}
                               animate={{ scale: [1, 1.5, 1] }}
                               transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: i * 0.2 }}
                             />
@@ -693,8 +765,6 @@ export default function Portfolio() {
           </div>
         </div>
       </motion.section>
-
-      
 
       {/* Projects Section with 3D Card Effects */}
       <motion.section
@@ -820,8 +890,8 @@ export default function Portfolio() {
                           whileHover={{ scale: 1.1 }}
                         >
                           <Badge className="bg-white/10 text-white border border-white/20">
-  {tech}
-</Badge>
+                            {tech}
+                          </Badge>
                         </motion.div>
                       ))}
                     </div>
@@ -896,15 +966,15 @@ export default function Portfolio() {
                   period: "March 2025 – June 2025",
                   location: "Nasik, Maharashtra",
                   color: "purple",
-                   achievements: [
-    "Developed responsive, dynamic UIs using React.js, Redux, Tailwind CSS, and Bootstrap",
-    "Integrated RESTful APIs using Axios and React Query; implemented Firebase Auth, protected routes, and real-time data sync",
-    "Employed Git version control, collaborated in Agile sprints, and contributed to daily stand-ups via GitHub",
-    "Deployed multiple web modules using Netlify and Vercel, ensuring cross-browser and cross-device optimization",
-    "Focused on component reusability, modular architecture, and state management for scalable applications",
-    "Participated in code reviews, sprint retrospectives, and technical documentation for knowledge sharing",
-    "Conducted unit testing using Jest and React Testing Library to ensure UI reliability and maintainability"
-  ]
+                  achievements: [
+                    "Developed responsive, dynamic UIs using React.js, Redux, Tailwind CSS, and Bootstrap",
+                    "Integrated RESTful APIs using Axios and React Query; implemented Firebase Auth, protected routes, and real-time data sync",
+                    "Employed Git version control, collaborated in Agile sprints, and contributed to daily stand-ups via GitHub",
+                    "Deployed multiple web modules using Netlify and Vercel, ensuring cross-browser and cross-device optimization",
+                    "Focused on component reusability, modular architecture, and state management for scalable applications",
+                    "Participated in code reviews, sprint retrospectives, and technical documentation for knowledge sharing",
+                    "Conducted unit testing using Jest and React Testing Library to ensure UI reliability and maintainability"
+                  ]
                 },
                 {
                   title: "Web Developer",
@@ -913,10 +983,10 @@ export default function Portfolio() {
                   location: "Remote",
                   color: "teal",
                   achievements: [
-    "Built and maintained scalable Python web services using Flask, integrating secure third‑party APIs with OAuth 2.0 and JWT authentication",
-    "Optimized application performance through profiling, caching strategies, and code refactoring—reducing average response times by 30%",
-    "Established DevOps best practices: automated CI/CD pipelines, conducted thorough code reviews, and enforced linting/testing standards in GitHub workflows"
-  ]
+                    "Built and maintained scalable Python web services using Flask, integrating secure third‑party APIs with OAuth 2.0 and JWT authentication",
+                    "Optimized application performance through profiling, caching strategies, and code refactoring—reducing average response times by 30%",
+                    "Established DevOps best practices: automated CI/CD pipelines, conducted thorough code reviews, and enforced linting/testing standards in GitHub workflows"
+                  ]
                 },
               ].map((exp, index) => (
                 <motion.div
@@ -928,7 +998,7 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                 >
                   <motion.div
-                    className={`absolute left-6 w-4 h-4 bg-${exp.color}-400 rounded-full border-4 border-black`}
+                    className={`absolute left-6 w-4 h-4 ${getColorClasses(exp.color).bg} rounded-full border-4 border-black`}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.3 + 0.5 }}
@@ -941,11 +1011,11 @@ export default function Portfolio() {
                         <div className="flex justify-between items-start">
                           <div>
                             <CardTitle className="text-xl text-white">{exp.title}</CardTitle>
-                            <CardDescription className={`text-${exp.color}-400 font-medium`}>
+                            <CardDescription className={`${getColorClasses(exp.color).text} font-medium`}>
                               {exp.company}
                             </CardDescription>
                           </div>
-                          <Badge variant="outline" className={`border-${exp.color}-400 text-${exp.color}-400`}>
+                          <Badge variant="outline" className={`${getColorClasses(exp.color).border} ${getColorClasses(exp.color).text}`}>
                             {exp.period}
                           </Badge>
                         </div>
@@ -963,7 +1033,7 @@ export default function Portfolio() {
                               viewport={{ once: true }}
                               whileHover={{ x: 5 }}
                             >
-                              <Star className={`h-4 w-4 text-${exp.color}-400 mt-1 flex-shrink-0`} />
+                              <Star className={`h-4 w-4 ${getColorClasses(exp.color).text} mt-1 flex-shrink-0`} />
                               {achievement}
                             </motion.li>
                           ))}
@@ -977,8 +1047,6 @@ export default function Portfolio() {
           </div>
         </div>
       </motion.section>
-
-      
 
       {/* Certifications Section */}
       <motion.section
@@ -1087,11 +1155,11 @@ export default function Portfolio() {
                           whileHover={{ x: 10, scale: 1.02 }}
                         >
                           <motion.div
-                            className={`bg-${contact.color}-500/20 p-3 rounded-full`}
+                            className={`${getColorClasses(contact.color).bgOpacity} p-3 rounded-full`}
                             whileHover={{ scale: 1.1, rotate: 360 }}
                             transition={{ duration: 0.5 }}
                           >
-                            <contact.icon className={`h-6 w-6 text-${contact.color}-400`} />
+                            <contact.icon className={`h-6 w-6 ${getColorClasses(contact.color).text}`} />
                           </motion.div>
                           <div>
                             <p className="text-gray-400">{contact.label}</p>
@@ -1198,7 +1266,7 @@ export default function Portfolio() {
             whileHover={{ scale: 1.05, color: "#ffffff" }}
             transition={{ duration: 0.3 }}
           >
-            © 2024 Soham Govindwar. Crafted with passion and cutting-edge technology.
+            © 2025 Soham Govindwar. Crafted with passion and cutting-edge technology.
           </motion.p>
         </div>
       </motion.footer>
